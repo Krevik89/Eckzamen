@@ -3,6 +3,3 @@
 int main() {
 	main_game();
 }
-
-	
-

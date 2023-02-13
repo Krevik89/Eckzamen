@@ -24,13 +24,13 @@ void ConsoleCursorVisible(bool show, short size) {
 	SetConsoleCursorInfo(hStdOut, &structCursorInfo);
 }
 
-int** pa = nullptr; //пустой указатель
+int** pa = nullptr;
 string menu[6]{
 { "ИГРАТЬ" },{ "ВЫХОД" },{ "8(3x3)" },{ "15(4x4)" },{ "РУЧНОЕ РАЗМЕШИВАНИЕ" },{ "АВТОМАТИЧЕСКОЕ РАЗМЕШИВАНИЕ" }
 };
 char key;
 int count_of_shift;
-int pi, pj; //переменные для поиска нуля по индексу pi по индексу i и pj по индексу j
+int pi, pj; 
 int** Create(int s) {
 	int** arr = new int* [s];
 	for (int i = 0; i < s; i++) {
@@ -38,7 +38,7 @@ int** Create(int s) {
 	}
 	return arr;
 }
-void deletearr(int** arr, int row) {      //добавил так сказать че по кайфу чтоб удалять после победы
+void deletearr(int** arr, int row) { 
 	for (int i = 0; i < row; i++) {
 		delete[]arr[i];
 	}
@@ -157,8 +157,8 @@ bool Winn(int** p, int s) {
 	return game;
 }
 void Game(int s, int choise_shuffle) {
-	pa = Create(s);//к нулевому указателю присваиваем масив
-	Inicial(pa, s);//инициализируем
+	pa = Create(s);
+	Inicial(pa, s);
 	if (choise_shuffle == 0) {
 		findZero(pa, s);
 		do {
@@ -207,13 +207,12 @@ void Menu(int s, int choise_game, int choise_shuffle = 0) {
 		GoToXY(x, y);
 		for (int i = s - 2; i < s; i++)
 		{
-			if (i > 5) break;									//если там s выйдет за пределы меню, он не будет выполнятся, лучше не придумал, но работает
+			if (i > 5) break;									//если там s выйдет за пределы меню
 			if (i == active_menu) SetConsoleTextAttribute(hStdOut, FOREGROUND_GREEN | FOREGROUND_INTENSITY);
 			else SetConsoleTextAttribute(hStdOut, FOREGROUND_GREEN);
 			GoToXY(x, y++);
 			cout << menu[i] << " ";
 		}
-		//choise_game = 0;
 		key = _getch();
 		if (key == -32) key = _getch(); // Отлавливаем стрелочки
 		switch (key)
